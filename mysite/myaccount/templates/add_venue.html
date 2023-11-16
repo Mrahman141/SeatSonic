@@ -1,0 +1,96 @@
+{% extends "master_acc.html" %}
+{% load i18n %}
+{% block title %}
+    {%  trans "Add Venue" %}
+{% endblock %}
+
+{% block more_content %}
+    <style>
+        .form-add-venue {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1rem;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            padding: 0.5rem;
+            font-size: 1rem;
+            border-radius: 0.25rem;
+            border: 1px solid #ccc;
+            width: 80%;
+            align-self: center;
+        }
+    </style>
+    {% if er %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert"
+             style="margin-left: 10%;margin-right: 10%;">
+            <strong>{{ err_msg }}</strong> {%  trans "Please Try Again" %}.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endif %}
+    <h1 style="text-align: center">{%  trans "Add Venue" %}</h1>
+    <div class="card  mx-auto " style="width: 40rem; color: #1b1b1b; text-align:center ">
+    <div class="card-body">
+    <form action="/account/addvenue" method="POST">
+        {% csrf_token %}
+        <div class="form-add-venue">
+            <label for="venue_name">{%  trans "Venue Name" %}:</label>
+            <input type="text" id="venue_name" name="venue_name" required>
+        </div>
+        <div class="form-add-venue">
+            <label for="venue_email">{%  trans "Venue Email" %}:</label>
+            <input type="email" id="venue_email" name="venue_email" required>
+        </div>
+        <div class="form-add-venue">
+            <h3>{%  trans "Venue Address" %}</h3>
+            <label for="venue_country">{%  trans "Country" %}:</label>
+            <input type="text" id="venue_country" name="venue_country" required>
+        </div>
+        <div class="form-add-venue">
+            <label for="venue_province">{%  trans "Province" %}:</label>
+            <input type="text" id="venue_province" name="venue_province" required>
+        </div>
+        <div class="form-add-venue">
+            <label for="venue_city">{%  trans "City" %}:</label>
+            <input type="text" id="venue_city" name="venue_city" required>
+        </div>
+        <div class="form-add-venue">
+            <label for="venue_streetaddress">{%  trans "Street Address" %}:</label>
+            <input type="text" id="venue_streetaddress" name="venue_streetaddress" required>
+        </div>
+        <div class="form-add-venue">
+            <label for="venue_postalcode">{%  trans "Postal Code" %}:</label>
+            <input type="text" id="venue_postalcode" name="venue_postalcode" required>
+        </div>
+        <div class="form-add-venue">
+            <label for="venue_phone">{%  trans "Phone Number" %}:</label>
+            <input type="tel" id="venue_phone" name="venue_phone" pattern="[0-9]{3}[0-9]{3}[0-9]{4}">
+        </div>
+        <div class="form-add-venue">
+            <label for="venue_image">{%  trans "Image" %}:</label>
+            <input type="text" id="venue_image" name="venue_image" required>
+        </div>
+
+        <div class="form-add-venue">
+            <p>{%  trans "Venue Seating" %}</p>
+            <label for="venue_totseats">{%  trans "Total Seats" %}</label>
+            <input type="number" id="venue_totseats" name="venue_totseats" required>
+        </div>
+        <div class="form-add-venue">
+            <label for="venue_seat_types">{%  trans "Seat Types" %}:</label>
+            <textarea id="venue_seat_types" name="venue_seat_types" placeholder="Type-ammount_seats (enter-repeat)" required></textarea>
+        </div>
+        <div class="form-add-venue">
+            <input type="submit" value="Add Venue">
+        </div>
+    </form></div></div>
+{% endblock %}

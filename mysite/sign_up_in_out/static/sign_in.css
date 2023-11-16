@@ -1,0 +1,52 @@
+label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+
+form {
+    text-align: center;
+}
+
+input{
+    padding: 0.5rem;
+    font-size: 1rem;
+    border-radius: 0.25rem;
+    border: 1px solid #ccc;
+    width: 100%;
+}
+
+form {
+    text-align: center;
+}
+
+input {
+    width: 200px;
+}
+
+div.center {
+    margin-top: 30px;
+
+    margin-left: 300px;
+    margin-right: 300px;
+    padding: 50px;
+    text-align: center;
+    border: 5px solid aqua;
+    color: white;
+}
+
+h1.center {
+    margin-top: 100px;
+    color: white;
+    text-align: center;
+
+}
+
+.show-password {
+    transform: translateY(-50%);
+    cursor: pointer;
+}
+
+.show-password i {
+    color: white;
+}

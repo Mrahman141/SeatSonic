@@ -1,0 +1,88 @@
+{% load i18n %}
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>{% block title %}{% endblock %}</title>
+    {% load bootstrap5 %}
+    {% bootstrap_css %}
+    {% bootstrap_javascript %}
+    <link rel="stylesheet" href="{% static 'global.css' %}">
+    <script src="{% static 'pageshow.js' %}"></script>
+
+
+</head>
+
+<body>
+<nav class="navbar navbar-expand-lg">
+    <div class="container-fluid">
+        <div class="collapse navbar-collapse row align-items-start" id="navbarSupportedContent">
+            <div class="col d-flex align-items-start justify-content-start">
+                <a class="nav-link active" aria-current="page" href="/">{% trans "Home" %}</a>
+                <a class="nav-link" href="/allConcerts">{% trans "Concerts" %}</a>
+                <a class="nav-link" href="/venues">{% trans "Venues" %}</a>
+                <a class="nav-link" href="/about">{% trans "About" %}</a>
+            </div>
+            <div class="col d-flex align-items-center justify-content-center" style="color: white;">
+                <h2><a href="/" style="text-decoration: none;">Seat Sonic</a></h2>
+            </div>
+            <div class="col d-flex align-items-end justify-content-end" style="font-size: 15px;">
+                <div class="dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false">
+                        {% trans "Language" %}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/language/en/">{% trans "English" %}</a></li>
+                        <li><a class="dropdown-item" href="/language/fr/">{% trans "French" %}</a></li>
+                        <li><a class="dropdown-item" href="/language/ru/">{% trans "Russian" %}</a></li>
+                        <li><a class="dropdown-item" href="/language/bn/">{% trans "Bengali" %}</a></li>
+                        <li><a class="dropdown-item" href="/language/hi/">{% trans "Hindi" %}</a></li>
+
+                    </ul>
+                </div>
+                <a {% if not account %} class="nav-link d-none"{% else %}class="nav-link"{% endif %}
+                                        href="/checkout">{% trans "Check Out" %}</a>
+                <a {% if account %} class="nav-link d-none"{% else %}class="nav-link"{% endif %}
+                                    href="/signin">{% trans "Sign In" %}</a>
+                <div {% if account %}class="dropdown" {% else %} class="dropdown d-none" {% endif %}>
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                       data-bs-toggle="dropdown" aria-expanded="false" style="padding-right: 60px;">
+                        {% trans "My Account" %}
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <li><a class="dropdown-item" href="/account">{% trans "Profile Information" %}</a></li>
+                        <li><a class="dropdown-item" data-bs-toggle="modal" data-bs-target="#logoutmodal"
+                               style="cursor: pointer;">{% trans "Log out" %}</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</nav>
+<br>
+
+<div class="modal fade" id="logoutmodal" tabindex="-1" aria-labelledby="logoutmodalLabel" aria-hidden="true"
+     style="color: black;">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="logoutmodalLabel">{% trans "Log out" %}</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                {% trans "Are you sure you want to log out?" %}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
+                        style="background-color: blue; color: white; border-radius: 5px;">{% trans "Cancel" %}</button>
+                <a href="/logout/" class="btn btn-danger"
+                   style="background-color: red; color: black; border-radius: 5px;">{% trans "Log out" %}</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% block content %}
+{% endblock %}
+</body>
+</html>

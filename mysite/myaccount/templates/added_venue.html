@@ -1,0 +1,34 @@
+{% extends "master_acc.html" %}
+{% block title %}
+    {{ message }} Venue
+{% endblock %}
+{% block more_content %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        Details about <strong>{{ venue.name }}</strong> has been {{ message }}.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+     <div class="card  mx-auto " style="width: 40rem; color: #1b1b1b; ">
+    <div class="card-body">
+    <h1>{{ venue.name }} : {{ venue.venue_id }}</h1>
+    <h2>Email: {{ venue.email }}</h2>
+    <h2>Phone: {{ venue.phone_number }}</h2>
+    <h2>Country: {{ venue.country }}</h2>
+    <h2>Province: {{ venue.province }}</h2>
+    <h2>Street: {{ venue.street_address }}</h2>
+    <h2>City: {{ venue.city }}</h2>
+    <h2>Postal Code: {{ venue.postal_code }}</h2>
+    <h2>Total seats: {{ venue.total_seats }}</h2>
+    <h2>Seats: {{ venue.seat_types|join:","  }}</h2>
+    <div class="d-flex justify-content-center">
+        <img src="{{ venue.image }}" class="d-block w-50 spin" alt="...">
+    </div>
+    <br>
+    <button type="button" class="btn btn-primary"
+            onclick="window.location.href='/account/addvenue'">Add Another Venue
+    </button>
+
+    <button type="button" class="btn btn-primary"
+            onclick="window.location.href='/account/listvenue'">See List of Venue (Admin View)
+    </button></div></div>
+    <br><br>
+{% endblock %}

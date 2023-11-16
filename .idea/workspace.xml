@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="fa145a1c-a0d2-4454-b0e0-8d0ac2c23613" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/checkout/templates/checkout.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/checkout/templates/checkout.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/checkout/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/checkout/views.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/db.sqlite3" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/db.sqlite3" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysite/myaccount/templates/edit_concert.html" beforeDir="false" afterPath="$PROJECT_DIR$/mysite/myaccount/templates/edit_concert.html" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="HTML File" />
+        <option value="CSS File" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="MarkdownSettingsMigration">
+    <option name="stateVersion" value="1" />
+  </component>
+  <component name="ProjectId" id="2LWTsZ0pSzVwRHPoERZO40rrJ8o" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;DefaultHtmlFileTemplate&quot;: &quot;HTML File&quot;,
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/ASUS/Documents/BTP305/project1-group-9-btp-project/mysite/checkout&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;com.jetbrains.django.DjangoModulesConfigurable&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\ASUS\Documents\BTP305\project1-group-9-btp-project\mysite\checkout" />
+      <recent name="C:\Users\tanya\Documents\GitHub\project1-group-9-btp-project\mysite\about\static\media" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\ASUS\Documents\BTP305\project1-group-9-btp-project\mysite\checkout\static" />
+      <recent name="C:\Users\tanya\Documents\GitHub\project1-group-9-btp-project\mysite\about\static\media" />
+      <recent name="C:\Users\tanya\Documents\GitHub\project1-group-9-btp-project\mysite\home\static\media" />
+      <recent name="C:\Users\tanya\Documents\GitHub\project1-group-9-btp-project\mysite\home\static" />
+      <recent name="C:\Users\tanya\Documents\GitHub\project1-group-9-btp-project\mysite\allConcerts" />
+    </key>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="fa145a1c-a0d2-4454-b0e0-8d0ac2c23613" name="Changes" comment="" />
+      <created>1675986045469</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1675986045469</updated>
+      <workItem from="1675986047441" duration="10000" />
+      <workItem from="1676055990950" duration="2490000" />
+      <workItem from="1676064778697" duration="2717000" />
+      <workItem from="1676067718020" duration="15556000" />
+      <workItem from="1676235356132" duration="3758000" />
+      <workItem from="1676239184003" duration="7760000" />
+      <workItem from="1676317560881" duration="449000" />
+      <workItem from="1676348534585" duration="5903000" />
+      <workItem from="1676354581271" duration="8026000" />
+      <workItem from="1676395958018" duration="78000" />
+      <workItem from="1676593239115" duration="5369000" />
+      <workItem from="1676648393491" duration="9458000" />
+      <workItem from="1677181816428" duration="11368000" />
+      <workItem from="1677193782609" duration="4460000" />
+      <workItem from="1677434281547" duration="605000" />
+      <workItem from="1677448377290" duration="148000" />
+      <workItem from="1677708454720" duration="2206000" />
+      <workItem from="1677725197770" duration="3429000" />
+      <workItem from="1677801559431" duration="9291000" />
+      <workItem from="1677860283109" duration="4278000" />
+      <workItem from="1677960459285" duration="7081000" />
+      <workItem from="1677970464932" duration="15156000" />
+      <workItem from="1678029266895" duration="17752000" />
+      <workItem from="1678123027125" duration="12372000" />
+      <workItem from="1678138500268" duration="4807000" />
+      <workItem from="1678143486821" duration="5394000" />
+      <workItem from="1678149742117" duration="2875000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/mysite/mysite/urls.py</url>
+          <line>18</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
+  </component>
+</project>

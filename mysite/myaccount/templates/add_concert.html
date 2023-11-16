@@ -1,0 +1,95 @@
+{% extends "master_acc.html" %}
+{% load i18n %}
+{% block title %}
+    {%  trans "Add Concert" %}
+{% endblock %}
+{% block more_content %}
+    <style>
+        .form-add-concert {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1rem;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            padding: 0.5rem;
+            font-size: 1rem;
+            border-radius: 0.25rem;
+            border: 1px solid #ccc;
+            width: 80%;
+            align-self: center;
+        }
+    </style>
+    {% if err %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert"
+             style="margin-left: 10%;margin-right: 10%;">
+            <strong>{{ err }}</strong> {%  trans "Please Try Again" %}.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endif %}
+    <h1 style="text-align: center">{%  trans "Add Concert" %}</h1>
+    <div class="card  mx-auto " style="width: 40rem; color: #1b1b1b; text-align:center ">
+
+    <div class="card-body">
+
+    <form action="/account/addconcert" method="POST">
+        {% csrf_token %}
+        <div class="form-add-concert">
+            <label for="venueID">{%  trans "Venue ID" %}:</label>
+             <select id="venueID" name="venueID" required>
+                 {% for x in venue %}
+
+                    <option value={{ x.venue_id }}><p><Strong>{%  trans "ID" %}: {{ x.venue_id }}</Strong> <strong>{{ x.name }}</strong> -
+                            <strong>{%  trans "Capacity" %}:</strong> {{ x.total_seats }} -
+                            <strong>{%  trans "Types" %}:</strong>
+                            {% for pri in x.seat_types %}
+                                ({{ pri.type }}-{{ pri.seats }})
+                            {% endfor %}
+                        </p></option>
+                 {% endfor %} </select><br>
+        </div>
+        <div class="form-add-concert">
+            <label for="concert_name">{%  trans "Concert Name" %}:</label>
+            <input type="text" id="concert_name" name="concert_name" required>
+        </div>
+        <div class="form-add-concert">
+            <label for="artist_name">{%  trans "Artist Name" %}:</label>
+            <input type="text" id="artist_name" name="artist_name" placeholder="name,name,name etc" required>
+        </div>
+        <div class="form-add-concert">
+            <label for="artist_image">{%  trans "Image" %}:</label>
+            <input type="text" id="artist_image" name="artist_image" required>
+        </div>
+        <div class="form-add-concert">
+            <label for="artist_genre">{%  trans "Genre" %}:</label>
+            <input type="text" id="artist_genre" name="artist_genre" placeholder="genre,genre,genre etc" required>
+        </div>
+        <div class="form-add-concert">
+            <label for="concert_date_time">{%  trans "Date" %}:</label>
+            <input type="datetime-local" id="concert_date_time" name="concert_date_time" required>
+        </div>
+        <div class="form-add-concert">
+            <label for="concert_door_open">{%  trans "Doors Open" %}:</label>
+            <input type="time" id="concert_door_open" name="concert_door_open" required>
+        </div>
+
+        <div class="form-add-concert">
+            <label for="venue_seat_price">{%  trans "Seat Price (CAD)" %}:</label>
+            <textarea id="venue_seat_price" name="venue_seat_price" placeholder="Type-price-total_seats_needed enter repeat CaseSensitive" required></textarea>
+        </div>
+
+        <div class="form-add-concert">
+            <input type="submit" value="Add Concert">
+        </div>
+    </form>
+    </div></div>
+{% endblock %}

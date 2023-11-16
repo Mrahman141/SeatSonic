@@ -1,0 +1,66 @@
+{% extends 'master.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}
+    {%  trans "Sign In" %}
+{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'sign_in.css' %}">
+    <script src="https://kit.fontawesome.com/896d23d334.js" crossorigin="anonymous"></script>
+    <script src="{% static 'sign_in.js' %}"></script>
+
+    {% if errors %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert"
+             style="margin-left: 10%;margin-right: 10%;">
+            <strong>{{ error }}</strong> {%  trans "Please Try Again" %}.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endif %}
+
+    {% if created %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert"
+             style="margin-left: 10%;margin-right: 10%;">
+            <strong>{{ msg }}</strong> {%  trans "Please Sign In" %}.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endif %}
+
+    {% if reset %}
+        <div class="alert alert-success alert-dismissible fade show" role="alert"
+             style="margin-left: 10%;margin-right: 10%;">
+            {%  trans "Password Reset Successful. Please Sign In" %}.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endif %}
+
+    <h1 class="center">{%  trans "Sign In" %}</h1>
+    <div class="center">
+        <form action="/signin/" method="POST">
+            {% csrf_token %}
+            <div>
+                <label for="login_username">{%  trans "Username" %}:</label>
+                <input type="text" id="login_username" name="login_username">
+            </div>
+            <br>
+            <div style="padding-left: 27px;">
+                <label for="login_password">{%  trans "Password" %}:</label>
+                <input type="password" id="login_password" name="login_password">
+                <span class="show-password" onclick="togglePassword()">
+                <i class="fas fa-eye"></i>
+                </span>
+            </div>
+            <br>
+            <div class="form-links">
+                <a href="/forgotpassword">{%  trans "Forgot Password" %}?</a>
+                <span> | </span>
+                <a href="/signup">{%  trans "Sign Up" %}</a>
+            </div>
+            <br>
+            <div style="padding-left: 40px;">
+                <button type="submit" class="btn btn-primary">{%  trans "Sign In" %}</button>
+            </div>
+        </form>
+    </div>
+{% endblock %}

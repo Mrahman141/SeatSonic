@@ -1,0 +1,87 @@
+{% extends 'master.html' %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}
+    {%  trans "Sign Up" %}
+{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'sign_up.css' %}">
+    <script src="https://kit.fontawesome.com/896d23d334.js" crossorigin="anonymous"></script>
+    <script src="{% static 'sign_up.js' %}"></script>
+
+    {% if errors %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert"
+             style="margin-left: 10%;margin-right: 10%;">
+            <strong>{{ error }}</strong> {%  trans "Please Try Again" %}.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endif %}
+    <h1 class="center">{%  trans "Sign Up" %}</h1>
+    <form action="/signup/" method="POST">
+        {% csrf_token %}
+        <label for="user_f_name">{%  trans "First Name" %}:</label>
+        <input type="text" id="user_f_name" name="user_f_name" required><br>
+
+        <label for="user_l_name">{%  trans "Last Name" %}:</label>
+        <input type="text" id="user_l_name" name="user_l_name" required><br>
+
+        <label for="username">{%  trans "Username" %}:</label>
+        <input type="text" id="username" name="username" required><br>
+
+        <label for="user_email">{%  trans "Email" %}:</label>
+        <input type="email" id="user_email" name="user_email" required><br>
+
+        <label for="user_password">{%  trans "Password" %}:</label>
+        <div class="password-wrapper">
+            <input type="password" id="user_password" name="user_password" required>
+            <button type="button" class="show-password-btn" aria-label="Toggle password visibility"
+                    onclick="togglePassword()">
+                <i class="fa fa-eye" aria-hidden="true"></i>
+            </button>
+        </div>
+        <br>
+
+        <label for="user_confirm_password">{%  trans "Confirm Password" %}:</label>
+        <div class="password-wrapper">
+            <input type="password" id="user_confirm_password" name="user_confirm_password" required>
+            <button type="button" class="show-c-password-btn" aria-label="Toggle password visibility"
+                    onclick="togglePassword()">
+                <i class="fa fa-eye" aria-hidden="true"></i>
+            </button>
+        </div>
+        <br>
+
+        <label for="user_gender">{%  trans "Gender" %}:</label>
+        <select id="user_gender" name="user_gender">
+            <option value=""></option>
+            <option value="male">{%  trans "Male" %}</option>
+            <option value="female">{%  trans "Female" %}</option>
+        </select><br>
+
+        <label for="user_street_address">{%  trans "Street Address" %}:</label>
+        <input type="text" id="user_street_address" name="user_street_address"><br>
+
+        <label for="user_country">{%  trans "Country" %}:</label>
+        <input type="text" id="user_country" name="user_country"><br>
+
+        <label for="user_province">{%  trans "Province" %}:</label>
+        <input type="text" id="user_province" name="user_province"><br>
+
+        <label for="user_phone_number">{%  trans "Phone Number" %}:</label>
+        <input type="tel" id="user_phone_number" name="user_phone_number"><br>
+
+        <label for="user_account_type">{%  trans "Account Type" %}:</label>
+        <select id="user_account_type" name="user_account_type" required>
+            <option value="regular">{%  trans "Regular" %}</option>
+            <option value="commercial">{%  trans "Commercial" %}</option>
+            {% if admin %}
+                <option value="admin">{%  trans "Admin" %}</option>
+            {% endif %}
+        </select><br>
+
+        <input type="submit" value="Submit">
+    </form>
+
+{% endblock %}

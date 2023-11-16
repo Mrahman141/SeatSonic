@@ -1,0 +1,93 @@
+{% extends "master.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}
+    SeatSonic
+{% endblock %}
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'home.css' %}">
+    <div class="home-page">
+        <div class="center d-flex aligns-items-center justify-content-center">
+
+            <form class="d-flex w-75 p-3" method="POST" action="{% url 'search' %}">
+                {% csrf_token %}
+                <input class="form-control me-2" type="search" placeholder="Artist or Venue Name" aria-label="Search" name="searched">
+                <div class="btn-group">
+                    <button class="btn btn-outline-success" type="submit" name="search_type" value="concert">{% trans "Search Concerts" %}</button>
+                    <button class="btn btn-outline-success" type="submit" name="search_type" value="venue">{% trans "Search Venues" %}</button>
+                </div>
+            </form>
+
+        </div>
+        <div id="carouselCaptions" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                {% for x in concert|slice:'3' %}
+                    <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                        <img src="{{ x.image }}"
+                             class="d-block w-100 spin" alt="...">
+                        <div class="carousel-caption">
+                            <h5>{{ x.concert_name }} by {{ x.artist_name|join:"," }}</h5>
+                            {% for y in venue %}
+                                {% if y.venue_id == x.venue_id %}
+                                    <p>{{ y.city }}, {{ y.province }} - {{ y.name }}</p>
+                                {% endif %}
+                            {% endfor %}
+                        </div>
+                    </div>
+                {% endfor %}
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselCaptions"
+                    data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselCaptions"
+                    data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
+        </div>
+        <br><br><br>
+
+        <h1 style="padding-left: 100px">{%  trans "Concerts" %}</h1>
+        <br>
+        <div class="preview-concert d-flex aligns-items-left justify-content-left">
+            {% for z in concert|slice:'5' %}
+                <div class="card" style="width: 18rem;">
+                    <div>
+                        <img src="{{ z.image }}"
+                             class="card-img-top" alt="...">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title" style="color: black">{{ z.artist_name|join:"," }}</h5>
+                        <p style="color:black"><strong>{%  trans "Genre" %}: </strong> {{ z.genre|join:"," }}</p>
+                        <a href="/concert/{{ z.concert_id }}" class="btn btn-primary"  style="color: black">{%  trans "Go to concert info" %}</a>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+        <br>
+        <h1 style="padding-left: 100px">{%  trans "Venues" %}</h1>
+        <br>
+        <div class="preview-concert d-flex aligns-items-left justify-content-left">
+            {% for z in venue|slice:'5' %}
+                <div class="card" style="width: 18rem;">
+                    <div>
+                        <img src="{{ z.image }}"
+                             class="card-img-top" alt="...">
+                    </div>
+                    <div class="card-body">
+                        <h5 class="card-title" style="color: black">{{ z.name }}</h5>
+                        <p class="card-text" style="color: black">{{ z.street_address }}</p>
+                        <a href="/venue/{{z.venue_id }}" class="btn btn-primary" style="color: black">{%  trans "Go to venue info" %}</a>
+                    </div>
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+    <br><br><br><br><br>
+{% endblock %}

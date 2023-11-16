@@ -1,0 +1,20 @@
+.concerts-page{
+background-color: #08042b;
+    color: white;
+}
+
+.concert-image {
+        max-width: 150px;
+        max-height: 100px;
+    }
+
+table
+{
+    background-color: white;
+}
+
+.btn{
+    background-color: white;
+    border:3px solid;
+}
+

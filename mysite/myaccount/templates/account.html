@@ -1,0 +1,55 @@
+{% extends "master_acc.html" %}
+{% load i18n %}
+{% block title %}
+    {{ name }}
+{% endblock %}
+
+
+{% block more_content %}
+
+    <div class="card  mx-auto " style="width: 50rem; color: #1b1b1b; ">
+        <h1 style="text-align: center;">{{ user.fname }} {{ user.lname }}</h1>
+        <button type="button" {% if glow_e %}class="btn btn-secondary active"
+                {% else %}class="btn btn-secondary"{% endif %}
+                onclick="window.location.href='/account/edit'">{%  trans "Edit Details" %}
+        </button>
+        <div class="card-body">
+            <h5>{%  trans "Username" %}: {{ user.username }}</h5>
+            <h5>{%  trans "Email" %}: {{ user.email }}</h5>
+            <h5>{%  trans "Gender" %}:  {% if athlete_list %}
+                {{ user.gender }}
+            {% else %}
+                {%  trans "N/A" %}
+            {% endif %} </h5>
+            <h5>{%  trans "Phone Number" %}: {% if user.phone %}
+                {{ user.phone }}
+            {% else %}
+                {%  trans "N/A" %}
+            {% endif %} </h5>
+            <h4>{%  trans "Address" %}</h4>
+            <h5>{%  trans "Street" %}: {% if user.street_address %}
+                {{ user.street_address }}
+            {% else %}
+                {%  trans "N/A" %}
+            {% endif %}</h5>
+            <h5>{%  trans "Province" %}: {% if user.province %}
+                {{ user.province }}
+            {% else %}
+                {%  trans "N/A" %}
+            {% endif %}</h5>
+            <h5>{%  trans "Country" %}: {% if user.country %}
+                {{ user.country }}
+            {% else %}
+                {%  trans "N/A" %}
+            {% endif %}</h5>
+            <br>
+
+        </div>
+        <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#del_acc_modal">
+            {%  trans "Delete Profile" %}
+        </button>
+        <br>
+    </div>
+    <br>
+
+{% endblock %}

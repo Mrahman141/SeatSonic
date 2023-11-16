@@ -1,0 +1,75 @@
+{% extends "master.html" %}
+{% load i18n %}
+{% load static %}
+{% load mathfilters %}
+{% block content %}
+<body class="concert-info" >
+
+
+<div class="row container-fluid">
+    <div id="car" class="carousel slide col" data-ride="carousel" style="height: max-content">
+        <div class="carousel-inner" style=" height: 0; padding-bottom: 100%; ">
+            <div class="carousel-item active" style="position: absolute !important; top: 0; right: 0; bottom: 0; left: 0;">
+                <img class="d-block w-100 h-auto" src="{{ concert.image }}" alt="First slide" >
+            </div>
+            <div class="carousel-item" style="position: absolute !important; top: 0; right: 0; bottom: 0; left: 0; ">
+            <img class="d-block w-100 h-auto" src="{{ venue.image}}" alt="Second slide">
+            </div>
+
+        </div>
+    <div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#car"
+                    data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+        </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#car"
+                    data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span></button>
+    </div>
+</div>
+
+<div class="card col" style="width: 50rem">
+    <h1>{{ concert.concert_name }}</h1>
+
+    <div class="card-body">
+    <h3>{%  trans "Artists" %}: {{ concert.artist_name|join:","  }}</h3>
+    <h3>{%  trans "Day and time" %}: {{ concert.date_time }}</h3>
+    <h3>{%  trans "Venue" %}: {{ venue.name }}</h3>
+    <h3>{%  trans "Address" %}:</h3>
+
+    <h3>{{ venue.street_address }}</h3>
+    </div>
+</div>
+    <div class="card" style="width: 20rem; ">
+    <h1>{%  trans "Buy Now!" %}</h1>
+    <div class="card-body">
+    <form action="/checkout/" method="POST" id="myform">
+    <input type="hidden" name="concert" value="{{ concert.concert_id }}" />
+     {% csrf_token %}
+        {% for seat in concert.seats %}
+           <h5> <lable>{{ seat.type }} : {{ seat.price }}$<br>
+               {{ seat.total|sub:seat.booked }} {%  trans "seats left!" %}</lable></h5>
+
+             <input type="number" id="{{ seat.type }}" name="{{ seat.type }}" min="0" value="0"
+                     {% if seat.total|sub:seat.booked >= max_s %}
+                        max="{{ max_s }}"
+                     {% else %}
+                        max="{{ seat.total|sub:seat.booked }}"
+                     {%  endif %}
+                    placeholder="0" ><br>
+        {% endfor %}
+    <br>
+    </form>
+    </div>
+    <div class="card-footer" style="background: white">
+<input type="submit"  form="myform" value="Check Out" style="background: white">
+    </div>
+
+    </div>
+</div>
+
+
+</body>
+{% endblock content %}

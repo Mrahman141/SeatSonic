@@ -1,0 +1,22 @@
+{% extends "master.html" %}
+{% load i18n %}
+{% load static %}
+
+
+{% block content %}
+
+    <h1 align="center">{%  trans "About Us" %}</h1>
+    <div class="container-fluid">
+    <h5 align="center">{%  trans "Our company is concentrated on creating fast and convenient system for buying tickets" %}<br>
+    {%  trans "For business questions email" %}&nbsp;seatsonic@gmail.com</h5>
+    </div>
+    <link rel="stylesheet" href="{% static 'about.css' %}">
+     <body class="about-page">
+     <div class="container-fluid">
+         <image  src="{% static "/media/music.jpg" %}"  class="img-fluid rounded mx-auto d-block img"  alt="Responsive image"  width="100"></image>
+         <div class="centered">
+     <h1 >{%  trans "Don't Blink. You Might Miss It." %}</h1>
+         </div>
+     </div>
+     </body>
+{% endblock content %}

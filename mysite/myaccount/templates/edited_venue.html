@@ -1,0 +1,32 @@
+{% extends "master_acc.html" %}
+{% block title %}
+    Updated Venue
+{% endblock %}
+{% block more_content %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        Details about <strong>{{ venue.name }}</strong> has been updated.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <h1>{{ venue.name }} : {{ venue.venue_id }}</h1>
+    <h1>{{ venue.email }}</h1>
+    <h1>{{ venue.phone_number }}</h1>
+    <h1>{{ venue.country }}</h1>
+    <h1>{{ venue.province }}</h1>
+    <h1>{{ venue.street_address }}</h1>
+    <h1>{{ venue.city }}</h1>
+    <h1>{{ venue.postal_code }}</h1>
+    <h1>{{ venue.total_seats }}</h1>
+    <h1>{{ venue.seat_types }}</h1>
+    <div class="d-flex justify-content-center">
+        <img src="{{ venue.image }}" class="d-block w-50 spin" alt="...">
+    </div>
+    <br>
+    <button type="button" class="btn btn-primary"
+            onclick="window.location.href='/account/addvenue'">Add Another Venue
+    </button>
+    <br><br>
+    <button type="button" class="btn btn-primary"
+            onclick="window.location.href='/account/listvenue'">See List of Venue (Admin View)
+    </button>
+    <br><br>
+{% endblock %}

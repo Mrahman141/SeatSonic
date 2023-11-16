@@ -1,0 +1,102 @@
+{% extends "master_acc.html" %}
+{% block title %}
+    Edit Venue
+{% endblock %}
+
+
+{% block more_content %}
+    <style>
+        .form-edit-venue {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1rem;
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        p {
+            font-weight: bold;
+        }
+
+        input, select, textarea {
+            padding: 0.5rem;
+            font-size: 1rem;
+            border-radius: 0.25rem;
+            border: 1px solid #ccc;
+            width: 80%;
+             align-self: center;
+        }
+    </style>
+    {% if er %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert"
+             style="margin-left: 10%;margin-right: 10%;">
+            <strong>{{ err_msg }}</strong> Please Try Again.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endif %}
+    <h1 style="text-align: center">Edit Venue</h1>
+     <div class="card  mx-auto " style="width: 40rem; color: #1b1b1b; text-align:center ">
+
+    <div class="card-body">
+
+    <form action="/account/editvenue/{{ venue.venue_id }}" method="POST">
+        {% csrf_token %}
+        <div class="form-edit-venue">
+            <input type="hidden" id="venueID" name="venueID" value="{{ venue.venue_id }}"  required>
+        </div>
+        <div class="form-edit-venue">
+            <label for="venue_name">Venue Name:</label>
+            <input type="text" id="venue_name" name="venue_name" value="{{ venue.name }}" required>
+        </div>
+        <div class="form-edit-venue">
+            <label for="venue_email">Venue Email:</label>
+            <input type="email" id="venue_email" name="venue_email" value="{{ venue.email }}" required>
+        </div>
+        <div class="form-edit-venue">
+            <p>Venue Address</p>
+            <label for="venue_country">Country:</label>
+            <input type="text" id="venue_country" name="venue_country" value="{{ venue.country }}" required>
+        </div>
+        <div class="form-edit-venue">
+            <label for="venue_province">Province:</label>
+            <input type="text" id="venue_province" name="venue_province" value="{{ venue.province }}" required>
+        </div>
+        <div class="form-edit-venue">
+            <label for="venue_city">City:</label>
+            <input type="text" id="venue_city" name="venue_city" value="{{ venue.city }}" required>
+        </div>
+        <div class="form-edit-venue">
+            <label for="venue_streetaddress">Street Address:</label>
+            <input type="text" id="venue_streetaddress" name="venue_streetaddress" value="{{ venue.street_address }}" required>
+        </div>
+        <div class="form-edit-venue">
+            <label for="venue_postalcode">Postal Code:</label>
+            <input type="text" id="venue_postalcode" name="venue_postalcode" value="{{ venue.postal_code }}" required>
+        </div>
+        <div class="form-edit-venue">
+            <label for="venue_phone">Phone Number:</label>
+            <input type="tel" id="venue_phone" name="venue_phone" pattern="[0-9]{3}[0-9]{3}[0-9]{4}"
+                   value="{{ venue.phone_number }}">
+        </div>
+        <div class="form-edit-venue">
+            <label for="venue_image">Image:</label>
+            <input type="text" id="venue_image" name="venue_image" value="{{ venue.image }}" required>
+        </div>
+
+        <div class="form-edit-venue">
+            <p>Venue Seating</p>
+            <label for="venue_totseats">Total Seats</label>
+            <input type="number" id="venue_totseats" name="venue_totseats" value="{{ venue.total_seats }}" required>
+        </div>
+        <div class="form-edit-venue">
+            <label for="venue_seat_types">Seat Types (Separate each type with Enter):</label>
+            <textarea id="venue_seat_types" name="venue_seat_types">{% for sea in venue.seat_types %}{{ sea.type }}-{{ sea.seats }}&#10;{% endfor %}</textarea>
+        </div>
+        <div class="form-edit-venue">
+            <input type="submit" value="Edit Venue">
+        </div>
+    </form></div></div>
+{% endblock %}

@@ -1,0 +1,77 @@
+{% extends "master_acc.html" %}
+{% load i18n %}
+{% block title %}
+    {%  trans "List of Venues" %}
+{% endblock %}
+{% load static %}
+
+
+
+{% block more_content %}
+    {% if deleted %}
+        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+            {%  trans "Details about" %} {{ del_ven.name }} {%  trans "has been deleted" %}.
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endif %}
+    <div class="accordion accordion-flush">
+        <button type="button"
+                class="btn btn-secondary  {% if not admin %}d-none{% endif %}"
+                onclick="window.location.href='/account/addvenue'" id="addvenue" style="margin-bottom: 10px">{%  trans "Add Venue" %}
+        </button>
+        {% for x in venue %}
+            <div class="accordion-item">
+                <h2 class="accordion-header" id="flush-heading{{ x.venue_id }}">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                            data-bs-target="#flush-collapse{{ x.venue_id }}" aria-expanded="false"
+                            aria-controls="flush-collapse{{ x.venue_id }}">
+                        <strong>{{ x.name }}</strong>
+                    </button>
+                </h2>
+                <div id="flush-collapse{{ x.venue_id }}" class="accordion-collapse collapse"
+                     aria-labelledby="flush-heading{{ x.venue_id }}"
+                     data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body" style="color:black">
+                        <p><strong>{%  trans "Email" %}:</strong> {{ x.email }}</p>
+                        <p><strong>{%  trans "Address" %}:</strong> {{ x.street_address }}</p>
+                        <p><strong>{%  trans "Phone Number" %}:</strong> {{ x.phone_number }}</p>
+                        <p><strong>{%  trans "Capacity" %}:</strong> {{ x.total_seats }}</p>
+                        <p><strong>{%  trans "Seat Types" %}:</strong><br>
+                            {% for seat in x.seat_types %}
+                                {{ seat.type }}-{{ seat.seats }}<br>
+                            {% endfor %}</p>
+                        <div>
+                            <button type="button" class="btn btn-primary"
+                                    onclick="window.location.href='/account/editvenue/{{ x.venue_id }}'">{%  trans "Edit Venue" %}
+                            </button>
+                            <button type="button" class="btn btn-danger" data-bs-toggle="modal"
+                                    data-bs-target="#staticBackdrop{{ x.venue_id }}">
+                                {%  trans "Delete" %}
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal fade" id="staticBackdrop{{ x.venue_id }}" data-bs-backdrop="static"
+                     data-bs-keyboard="false" tabindex="-1" style="color: black"
+                     aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="staticBackdropLabel">{%  trans "Delete Details of" %} {{ x.name }} ?</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+                            <div class="modal-footer d-flex justify-content-center">
+                                <button type="button" class="btn btn-danger"
+                                        onclick="window.location.href='/account/deletevenue/{{ x.venue_id }}'">{%  trans "YES" %}
+                                </button>
+                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">{%  trans "NO" %}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <br>
+{% endblock %}

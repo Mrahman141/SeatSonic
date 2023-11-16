@@ -1,0 +1,149 @@
+{% extends "master.html" %}
+{% load i18n %}
+{% load static %}
+
+
+{% block content %}
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'checkout.css' %}">
+
+    <body class="bg-light">
+    <h1 align="center">{% trans "Check Out before it is TOO late" %}</h1>
+    <div class="container">
+        <main>
+            <img class="d-block mx-auto mb-4"
+                 src="https://brandontourism.com/wp-content/uploads/2021/12/keystone-centre-major-concert-2.jpg" alt=""
+                 width=100% height="215">
+
+            <div class="row g-5">
+                <div class="col-md-5 col-lg-4 order-md-last">
+                    <h4 class="d-flex justify-content-between align-items-center mb-3">
+                        <span class="text-primary">{% trans "Your cart" %}</span>
+
+                    </h4>
+                    <ul class="list-group mb-3">
+                        {% for ticket in user.cart.tickets %}
+                            <li class="list-group-item d-flex justify-content-between lh-sm">
+                                <div>
+                                    <h6 class="my-0">{{ ticket.concert }}</h6>
+
+                                </div>
+                            </li>
+                            <li class="list-group-item d-flex justify-content-between lh-sm">
+                                <div>
+                                    <h6 class="my-0">{% trans "Tickets in " %}{{ ticket.type }} {% trans "row" %}</h6>
+                                    <small class="text-muted">{% trans "Number of tickets" %}: {{ ticket.quantity }}
+                                        (${{ ticket.price }}/{% trans "ticket" %})</small>
+                                    {#                <div style="align-items: self-end"><button class="btn" onclick="delete({{ ticket }})"><i class="fa fa-trash"></i></button>   <button class="btn "><i class="fa fa-minus"></i></button>  <button class="btn "><i class="fa fa-plus"></i></button></div>#}
+                                {#            </div>#}</li>
+
+                        {% endfor %}
+
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>{% trans "Total (CAD)" %}</span>
+                            <strong>${{ user.cart.total }}</strong>
+                        </li>
+                        <li class="list-group-item d-flex justify-content-between bg-light">
+                            <div class="text-success">
+                                <h6 class="my-0">{% trans "Taxes(GST/HST)" %}</h6>
+                            </div>
+                            <span class="text-success">$ {{ user.cart.tax }}</span>
+                        </li>
+
+                        <li class="list-group-item d-flex justify-content-between">
+                            <span>{% trans "Total Amount(CAD)" %}</span>
+                            <strong>${{ user.cart.amount_paid }}</strong>
+                        </li>
+
+                    </ul>
+                    <button type="button" class="btn btn-danger"
+                            onclick="location.href='{% url 'delete' %}'">{% trans "Delete Cart" %}</button>
+                </div>
+                <div class="col-md-7 col-lg-8">
+
+                    <h4 class="mb-3">{% trans "Payment" %}</h4>
+                    <form action="/clear" method="POST">
+                        {% csrf_token %}
+                        <div class="my-3">
+                            <div class="form-check">
+                                <input id="credit" name="paymentMethod" type="radio" class="form-check-input" checked=""
+                                       required="">
+                                <label class="form-check-label" for="credit">{% trans "Credit card" %}</label>
+                            </div>
+                            <div class="form-check">
+                                <input id="debit" name="paymentMethod" type="radio" class="form-check-input"
+                                       required="">
+                                <label class="form-check-label" for="debit">{% trans "Debit card" %}</label>
+                            </div>
+                            <div class="form-check">
+                                <input id="paypal" name="paymentMethod" type="radio" class="form-check-input"
+                                       required="">
+                                <label class="form-check-label" for="paypal">{% trans "PayPal" %}</label>
+                            </div>
+                        </div>
+
+                        <div class="row gy-3">
+                            <div class="col-md-6">
+                                <label for="cc-name" class="form-label">{% trans "Name on card" %}</label>
+                                <input type="text" class="form-control" id="cc-name" placeholder="" required=""
+                                       fdprocessedid="6epamj">
+                                <small class="text-muted">{% trans "Full name as displayed on card" %}</small>
+                                <div class="invalid-feedback">
+                                    {% trans "Name on card is required" %}
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <label for="cc-number" class="form-label">{% trans "Credit card number" %}</label>
+                                <input type="number" class="form-control" id="cc-number" placeholder="" required=""
+                                       fdprocessedid="wgeqlk">
+                                <div class="invalid-feedback">
+                                    {% trans "Credit card number is required" %}
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="cc-expiration" class="form-label">{% trans "Expiration" %}</label>
+                                <input type="text" class="form-control" id="cc-expiration" placeholder="" required=""
+                                       fdprocessedid="rgjdgk">
+                                <div class="invalid-feedback">
+                                    {% trans "Expiration date required" %}
+                                </div>
+                            </div>
+
+                            <div class="col-md-3">
+                                <label for="cc-cvv" class="form-label">{% trans "CVV" %}</label>
+                                <input type="number" class="form-control" id="cc-cvv" placeholder="" required=""
+                                       fdprocessedid="z24tgs">
+                                <div class="invalid-feedback">
+                                    {% trans "Security code required" %}
+                                </div>
+                            </div>
+                        </div>
+
+                        <hr class="my-4">
+
+                        <button class="w-100 btn btn-primary btn-lg" type="submit"
+                                fdprocessedid="gihd8">{% trans "Continue to checkout" %}</button>
+                    </form>
+                </div>
+            </div>
+        </main>
+
+        <footer class="my-5 pt-5 text-muted text-center text-small">
+            <p class="mb-1">© 2023 Seat Sonic</p>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="#">{% trans "Privacy" %}</a></li>
+                <li class="list-inline-item"><a href="#">{% trans "Terms" %}</a></li>
+                <li class="list-inline-item"><a href="#">{% trans "Support" %}</a></li>
+            </ul>
+        </footer>
+    </div>
+
+
+    <script src="/docs/5.0/dist/js/bootstrap.bundle.min.js"
+            integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+            crossorigin="anonymous"></script>
+
+    </body>
+{% endblock content %}

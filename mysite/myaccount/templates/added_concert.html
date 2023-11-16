@@ -1,0 +1,30 @@
+{% extends "master_acc.html" %}
+{% block title %}
+    {{ message }} concert
+{% endblock %}
+{% block more_content %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        Details about <strong>{{ concert.concert_name }} by {{ concert.artist_name|join:"," }}</strong> has been {{ message }}.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+    <div class="card  mx-auto " style="width: 40rem; color: #1b1b1b; ">
+    <div class="card-body">
+    <h1>{{ concert.concert_name }} by {{ concert.artist_name|join:","   }}</h1>
+    <h2>Concert ID: {{ concert.concert_id }}</h2>
+    <h2>Venue ID: {{ concert.venue_id }}</h2>
+    <h2>Genre: {{ concert.genre|join:","   }}</h2>
+    <h2>Date and Time: {{ concert.date_time }}</h2>
+    <h2>Doors Open: {{ concert.doors_open }}</h2>
+    <h2>Price:
+        {% for pri in concert.seats %}
+            {{ pri.type }}-${{ pri.price }}<br>
+        {% endfor %}
+    </h2>
+
+    <div class="d-flex justify-content-center">
+        <img src="{{ concert.image }}" class="d-block w-50 spin" alt="...">
+    </div>
+    <br>
+    </div></div>
+   <br>
+{% endblock %}

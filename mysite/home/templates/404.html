@@ -1,0 +1,14 @@
+{% extends "master.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block title %}
+    404
+{% endblock %}
+
+{% block content %}
+    <h1 class="d-flex aligns-items-center justify-content-center" style="color: white">{%  trans "What are you doing here?" %}</h1>
+<div class="d-flex aligns-items-center justify-content-center" style="margin-bottom: 50px">
+    <img src="https://media.tenor.com/uyeLKxEDK8wAAAAM/what-confused.gif" width="500" height="600">
+</div>
+{% endblock %}

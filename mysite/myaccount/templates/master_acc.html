@@ -1,0 +1,77 @@
+{% extends "master.html" %}
+{% load i18n %}
+{% load static %}
+
+{% block content %}
+    <script src="https://kit.fontawesome.com/896d23d334.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="{% static 'account.css' %}">
+    <link rel="stylesheet" href="{% static 'delete_acc.css' %}">
+    <script src="{% static 'functions.js' %}"></script>
+
+    {% if error %}
+        <div class="alert alert-danger alert-dismissible fade show" role="alert"
+             style="margin-left: 10%;margin-right: 10%;">
+            <strong>{{ err }}</strong>
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    {% endif %}
+<div class="modal fade" id="del_acc_modal" data-bs-backdrop="static" data-bs-keyboard="false"
+         tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="staticBackdropLabel">{%  trans "Delete Account" %}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="del_acc" action="/account/delete" method="POST">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <label for="del_password">{%  trans "Password" %}</label>
+                            <input type="password" id="del_password" name="del_password">
+                            <button type="button" class="show-password" onclick="togglePassword()">
+                                <span class="fa fa-eye"></span>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">{%  trans "Close" %}</button>
+                    <button type="button" class="btn btn-danger" onclick="submitForm()">{%  trans "Understood" %}</button>
+                </div>
+            </div>
+        </div>
+    </div>
+<div class="text-center">
+
+    <button type="button" class=" {% if glow_p %} active {% endif %} btn btn-secondary"
+                        aria-current="true"
+                        onclick="window.location.href='/account'">{%  trans "Profile Information" %}
+                </button>
+    <button type="button" class="{% if glow_t %} active {% endif %} btn btn-secondary" onclick="window.location.href='/tickets'">
+                    {%  trans "Tickets" %}
+                </button>
+      <button type="button"
+                        class=" {% if glow_uv %} active {% endif %} {% if not admin %}d-none{% endif %} btn btn-secondary"
+                        onclick="window.location.href='/account/listvenue'">{%  trans "List of Venue" %}
+                </button>
+   <button type="button"
+                        class=" {% if glow_uc %} active {% endif %} {% if not admin %}d-none{% endif %} btn btn-secondary"
+                                   onclick="window.location.href='/account/listconcert'">{%  trans "List of Concert" %}
+                </button>
+ <button type="button"
+                        class="  {% if not admin %}d-none{% endif %} btn btn-secondary"
+                        onclick="window.location.href='/account/signup'">{%  trans "Add New Admin" %}
+                </button>
+</div>
+<br>
+
+    <div class="account" id="main-information">
+        {% block more_content %}
+        {% endblock %}
+
+
+    </div>
+
+{% endblock %}

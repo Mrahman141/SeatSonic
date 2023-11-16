@@ -1,0 +1,37 @@
+{% extends "master_acc.html" %}
+{% block title %}
+    Updated Concert
+{% endblock %}
+{% block more_content %}
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        Details about {{ concert.concert_name }} by {{ concert.artist_name }} has been Updated.
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+
+    <h1>{{ concert.concert_name }} by {{ concert.artist_name }}</h1>
+    <h1>Concert ID: {{ concert.concert_id }}</h1>
+    <h1>Venue ID: {{ concert.venue_id }}</h1>
+    <h1>Genre: {{ concert.genre }}</h1>
+    <h1>Date and Time: {{ concert.date_time }}</h1>
+    <h1>Doors Open:{{ concert.doors_open }}</h1>
+    <h1>Seats Booked{{ concert.seats_booked }}</h1>
+    <h1>Price:
+        {% for pri in x.seats %}
+            {{ pri.type }}-${{ pri.price }}<br>
+        {% endfor %}
+    </h1>
+
+    <div class="d-flex justify-content-center">
+        <img src="{{ concert.image }}" class="d-block w-50 spin" alt="...">
+    </div>
+    <br>
+    <div>
+        <button type="button" class="btn btn-primary"
+                onclick="window.location.href='/account/addconcert'">Add Another Concert
+        </button>
+        <button type="button" class="btn btn-primary"
+                onclick="window.location.href='/account/listconcert'">See List of Concert (Admin View)
+        </button>
+    </div>
+    <br><br>
+{% endblock %}

@@ -1,0 +1,68 @@
+{% extends "master_acc.html" %}
+{% load i18n %}
+{% block title %}
+    {{ user.username }}
+{% endblock %}
+
+
+{% block more_content %}
+    <style>
+        .form-edit-account {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 1rem;
+
+        }
+
+        label {
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        input, select {
+            padding: 0.5rem;
+            font-size: 1rem;
+            border-radius: 0.25rem;
+            border: 1px solid #ccc;
+            width: 100%;
+            align-self: center;
+        }
+    </style>
+    <div class = 'card  mx-auto ' style="color: #1b1b1b; width: 30rem; text-align:center ">
+    <h1>{%  trans "Edit Profile" %}: {{user.username }}</h1>
+        <div class="card-body">
+    <form action="/account/edit" method="POST">
+        {% csrf_token %}
+        <div class="form-edit-account">
+            <label for="first_name">{%  trans "First Name" %}:</label>
+            <input type="text" id="first_name" name="first_name" value={{ user.fname }}>
+        </div>
+        <div class="form-edit-account">
+            <label for="last_name">{%  trans "Last Name" %}:</label>
+            <input type="text" id="last_name" name="last_name" value={{ user.lname }}>
+        </div>
+        <div class="form-edit-account">
+        <label for="user_email">{%  trans "Email" %}:</label>
+        <input type="email" id="user_email" name="user_email" value={{ user.email }}>
+        </div>
+        <div class="form-edit-account">
+            <label for="phoneNumber">{%  trans "Phone Number" %}:</label>
+            <input type="tel" id="phoneNumber" name="phoneNumber" pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" value={{ user.phone }}>
+        </div>
+        <div class="form-edit-account">
+            <label for="street_address">{%  trans "Street Address" %}:</label>
+            <input type="text" id="street_address" name="street_address" value={{ user.street_address }}>
+        </div>
+        <div class="form-edit-account">
+            <label for="province">{%  trans "Province" %}:</label>
+            <input type="text" id="province" name="province" value={{ user.province }}>
+        </div>
+        <div class="form-edit-account">
+            <label for="country">{%  trans "Country" %}:</label>
+            <input type="text" id="country" name="country" value={{ user.country }}>
+        </div>
+        <div class="form-edit-account">
+            <input type="submit" value="Update Profile">
+        </div>
+    </form></div></div>
+{% endblock %}

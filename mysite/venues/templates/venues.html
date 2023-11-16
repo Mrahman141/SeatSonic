@@ -1,0 +1,40 @@
+{% extends "master.html" %}
+{% load i18n %}
+{% load static %}
+
+
+{% block content %}
+    <link rel="stylesheet" href="{% static 'concerts.css' %}">
+    <body class="concerts-page">
+    <div class="center d-flex aligns-items-center justify-content-center">
+        <form class="d-flex w-75 p-3" method="POST" action="{% url 'search' %}">
+            {% csrf_token %}
+            <input class="form-control me-2" type="search" placeholder="Artist or Venue Name" aria-label="Search" name="searched">
+            <div class="btn-group">
+                <button class="btn btn-outline-success" type="submit" name="search_type" value="concert">{% trans "Search Concerts" %}</button>
+                <button class="btn btn-outline-success" type="submit" name="search_type" value="venue">{% trans "Search Venues" %}</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="table-responsive container">
+        <table class="table table-hover" style="border-color: aqua;">
+            <tbody>
+            {% for venue in venues %}
+                <tr>
+                    <td>
+                        <image src="{{ venue.image }}" class="concert-image"></image>
+                    </td>
+                    <td align="left">{{ venue.name }}</td>
+                    <td align="right">{{ venue.street_address }}</td>
+                    <td align="right">{{ venue.email }}</td>
+                    <td align="right">
+                        <button class="btn" onclick="window.location.href='/venue/{{ venue.venue_id }}'">{%  trans "More Info" %}</button>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    </body>
+{% endblock content %}

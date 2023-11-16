@@ -1,0 +1,30 @@
+{% extends "master_acc.html" %}
+{% load i18n %}
+{% block title %}
+    Tickets
+{% endblock %}
+{% load static %}
+
+
+
+{% block more_content %}
+    <div class="accordion accordion-flush" style="padding-left: 500px">
+        {% for x in user.tickets %}
+            <div class="accordion-item" style="width:60%">
+                <h2 class="accordion-header" id="flush-heading{{ x.concert_id }}">
+                    <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+                             aria-expanded="false">
+                        <strong>{{ x.concert }} in {{ x.type }} row     Total seats: {{ x.quantity}} Total Price: ${{ x.subtotal }}</strong>
+                    </button>
+                </h2>
+                <div id="flush-collapse{{ x.concert_id }}" class="accordion-collapse collapse"
+                     aria-labelledby="flush-heading{{ x.concert_id }}"
+                     data-bs-parent="#accordionFlushExample">
+                    <div class="accordion-body" style="color:black">
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+    <br>
+{% endblock %}

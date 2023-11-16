@@ -1,0 +1,24 @@
+.home-page{
+background-color: #08042b;
+    color: white;
+}
+
+.btn{
+    background-color: white;
+    border:3px solid;
+}
+
+.carousel-inner {
+  height: 500px;
+  width: 100%;
+    padding-top: 2px;
+}
+
+.form-inline .btn {
+  display: inline-block;
+}
+
+img.spin{
+    height: 490px;
+    object-fit: contain;
+}
